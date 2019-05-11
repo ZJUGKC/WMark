@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>demo</title>
+</head>
+
+<body>
+    <textarea id="wmark-src" rows="10" cols="80px"></textarea>
+    <button onclick="demo();">提交</button>
+    <div id="wmark-result"></div>
+    <script type="text/javascript" src="wmark.js"></script>
+    <script>
+        function demo(){
+            var src = document.getElementById("wmark-src");
+            var res = document.getElementById("wmark-result");
+            var wm = new wmark();
+            res.innerHTML=wm.convert(src.value);
+        } 
+    </script>
+</body>
+
+</html>
