@@ -1,0 +1,239 @@
+1.单行paragraph
+
+hello, world
+
+2.多行paragraph
+
+hello,
+world
+
+3.setext header
+
+H1
+=====
+
+H2
+------
+
+4.atx header
+
+# H1
+
+## H2 ##
+
+###### H6 #
+
+5.简单blockquote
+
+> hello
+> 
+> good bye
+
+6.嵌套blockquote
+
+> lv1
+> 
+> > lv2
+> 
+> haha
+
+7.有序列表
+
+1.  a
+    b
+2.  > c
+
+8.无序列表
+
++   a
+    b
++       printf("hello,world");
+
+9.code
+
+    #include <iostream>
+    using namespace std;
+    int main(){
+        cout<<"hello, world"<<endl;
+        return 0;
+    }
+
+10.horizontal rules
+
+***
+
+11.html
+
+<html>
+<head>
+    <title>
+        simple
+    </title>
+</head>
+<body>
+    <div>
+        hello,world
+    </div>
+</body>
+</html>
+
+12.uml
+
+@startUML
+a -> b
+
+13.inline link
+
+aaaaa [b](www)
+
+14.inline reference
+
+aaaaaa [b][c]
+
+[c]:www
+
+15.inline em
+
+aaaa*b*cccc
+
+16.inline strong
+
+aaaa**bbbb**cccc
+
+17.inline code
+
+aaa`printf("hello,world");` bbbbb
+
+18.inline images
+
+aaa![b](c)
+
+inline video
+abc?[a](a.mp4)
+
+19.inline html
+
+1<p>2</p>3
+
+20.inline mathml
+
+&sum_(n=1)^100=5050&
+
+21.嵌套及多重inline
+
+[h]:www
+
+abcd[e](f)[*g*][h]
+
+22.uml：流程图
+@startUML
+<start>st -> <state>s1(firststep)
+s1 -> <choice>c1(firstchoice)
+c1 -> <state>s2(state1) [yes]
+c1 -> <state>s3(state2) [no]
+s3 -> s1 [loop]
+s2 -> <end>e
+
+23.uml：类图
+@startUML
+<class>c1{
+    p1;p2
+    p3
+    f1(int,int);f2(string)
+    p4
+}
+c1 extend <abstract>c2
+c1 1-n c3
+
+24.uml：交互图
+@startUML
+interact{
+    <actor>h1(human1)
+    <actor>h2(human2)
+    <database>d(database)
+    c(center)
+    new #
+    h1 -> c [request]
+        new ##
+        c -> d [store start]
+        d -> c [store end]
+        end
+    c -> h2 [transfer]
+    h2 -> c [respond]
+    c -> h1 [transfer] 
+    end
+}
+
+25.uml：状态图
+@startUML
+<start>s
+<state>s1(initial state){
+    <state>ss1(state1) -> <state>ss2(state2)
+    ss2 -> <state>ss3(state2)
+}
+s -> s1
+s1 -> s2(second state)
+s2 -> <end>e
+
+26.uml：对象图
+@startUML
+<instance>i aggregate <instance>ii
+
+27.uml：用例图
+@startUML
+<usecase>u1 extend <usecase>u2
+<actor>a1 1-n u1
+
+28.mathml
+
+&f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_nsin((npit)/L)&
+
+&ax^2+bx+c=0&
+
+&x^2+b/ax+c/a=0&
+
+&x^2+b/ax+(b/(2a))^2-(b/(2a))^2+c/a=0&
+
+&(x+b/(2a))^2=(b^2)/(4a^2)-c/a&
+
+&x+b/(2a)=+-sqrt((b^2)/(4a^2)-c/a)&
+
+&x_(1,2)=(-b+-sqrt(b^2-4ac))/(2a)&
+
+&x^2+y_1+z_12^34&
+
+&sin^-1(x)&
+
+&d/dxf(x)=lim_(h->0)(f(x+h)-f(x))/h&
+
+&f(x)=sum_(n=0)^oo(f^((n))(a))/(n!)(x-a)^n&
+
+&[[a,b],[c,d]]((n),(k))&
+
+&x/x={(1,if x!=0),(text{undefined},if x=0):}&
+
+&a//b&
+
+&(a/b)/(c/d)&
+
+&a/b/c/d&
+
+&((a*b))/c&
+
+&sqrtsqrtroot3x&
+
+&(:a,b:) and x lt y lt 1&
+
+&(:a,b:) and {:(x,y),(u,v):}&
+
+&abc-123.45^-1.1&
+
+&hat(ab) bar(xy) ulA vec v dotx ddot y&
+
+&bb "abc"&
+
+&{(S_(11),...,S_(1n)),(vdots,ddots,vdots),(S_(m1),...,S_(mn))]&
+
+&stackrel"加热"= or stackrel{Delta}{=}&
+
+&{::}_(92)^(238)U&
