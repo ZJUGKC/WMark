@@ -2933,6 +2933,8 @@ function wmark() {
         }
 
         this.handle = function (text) {
+            svg = new SVG();
+            vector = new Vector();
             configChange = {};
             convertToGraph(text);
             config = getConfig(configChange);

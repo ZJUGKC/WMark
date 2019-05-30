@@ -52,6 +52,15 @@
                             <div class="row">
                                 <div class="col-xs-6">
                                     <button type="button" class="btn btn-default">源文本</button>
+                                    <select id='testcase' onchange="change();">
+                                        <option selected value="empty">----</option>
+                                        <option value="basic">基础语法</option>
+                                        <option value="uml-class">类图</option>
+                                        <option value="uml-state">状态图</option>
+                                        <option value="uml-interact">交互图</option>
+                                        <option value="uml-flow">流程图</option>
+                                        <option value="math">数学公式</option>
+                                    </select>
                                 </div>
                                 <div class="col-xs-6 text-right">
                                     <button type="button" class="btn btn-success" onclick="transform()">
@@ -84,9 +93,139 @@
         var wm = new wmark();
         var input = document.getElementById('input');
         var output = document.getElementById('output');
+        var testlists = document.getElementById('testcase');
 
         function transform(){
             output.innerHTML = wm.convert(input.value);
+        }
+
+        function change(){
+            switch(testlists.value){
+                case 'empty':
+                    input.value = "";
+                    break;
+                case 'basic':
+                    input.value = "1.标题\n\n"+
+                    "H1\n"+
+                    "=====\n"+
+                    "\n"+
+                    "## h2 ##\n"+
+                    "\n"+
+                    "2.引用\n\n"+
+                    "> lv1\n"+
+                    "> \n"+
+                    "> > lv2\n"+
+                    "> \n"+
+                    "> abc\n"+
+                    "\n"+
+                    "3.列表\n\n"+
+                    "+   a\n"+
+                    "    b\n"+
+                    "+       printf(\"hello,world\");\n"+
+                    "\n"+
+                    "4.代码块\n\n"+
+                    "    #include <iostream>\n"+
+                    "    using namespace std;\n"+
+                    "    int main(){\n"+
+                    "        cout<<\"hello, world\"<<endl;\n"+
+                    "        return 0;\n"+
+                    "    }\n"+
+                    "\n"+
+                    "5.内联格式\n\n"+
+                    "链接[百度](www.baidu.com)\n"+
+                    "\n"+
+                    "链接[Github][link]\n"+
+                    "\n"+
+                    "[link]:https://github.com\n"+
+                    "\n"+
+                    "字体*加粗*\n"+
+                    "字体**加斜**\n"+
+                    "\n"+
+                    "![pic](http://upload.univs.cn/2015/0727/1437966336615.png)\n"+
+                    "\n";
+                    break;
+                case "uml-class":
+                    input.value = "@startUML\n"+
+                    "<class>c1{\n"+
+                    "    p1;p2\n"+
+                    "    p3\n"+
+                    "    f1(int,int);f2(string)\n"+
+                    "    p4\n"+
+                    "}\n"+
+                    "c1 extend <abstract>c2\n"+
+                    "c1 1-n c3\n";
+                    break;
+                case "uml-state":
+                    input.value = "@startUML\n"+
+                    "<start>s\n"+
+                    "<state>s1(initial state){\n"+
+                    "    <state>ss1(state1) -> <state>ss2(state2)\n"+
+                    "    ss2 -> <state>ss3(state2)\n"+
+                    "}\n"+
+                    "s -> s1\n"+
+                    "s1 -> s2(second state)\n"+
+                    "s2 -> <end>e\n";
+                    break;
+                case "uml-flow":
+                    input.value = "@startUML\n"+
+                    "<start>st -> <state>s1(firststep)\n"+
+                    "s1 -> <choice>c1(firstchoice)\n"+
+                    "c1 -> <state>s2(state1) [yes]\n"+
+                    "c1 -> <state>s3(state2) [no]\n"+
+                    "s3 -> s1 [loop]\n"+
+                    "s2 -> <end>e\n";
+                    break;
+                case "uml-interact":
+                    input.value = "@startUML\n"+
+                    "interact{\n"+
+                    "    <actor>h1(human1)\n"+
+                    "    <actor>h2(human2)\n"+
+                    "    <database>d(database)\n"+
+                    "    c(center)\n"+
+                    "    new #\n"+
+                    "    h1 -> c [request]\n"+
+                    "        new ##\n"+
+                    "        c -> d [store start]\n"+
+                    "        d -> c [store end]\n"+
+                    "        end\n"+
+                    "    c -> h2 [transfer]\n"+
+                    "    h2 -> c [respond]\n"+
+                    "    c -> h1 [transfer]\n"+
+                    "    end\n"+
+                    "}\n";
+                    break;
+                case "math":
+                    input.value = "&f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_nsin((npit)/L)&\n\n"+
+                    "&ax^2+bx+c=0&\n\n"+
+                    "&x^2+b/ax+c/a=0&\n\n"+
+                    "&x^2+b/ax+(b/(2a))^2-(b/(2a))^2+c/a=0&\n\n"+
+                    "&(x+b/(2a))^2=(b^2)/(4a^2)-c/a&\n\n"+
+                    "&x+b/(2a)=+-sqrt((b^2)/(4a^2)-c/a)&\n\n"+
+                    "&x_(1,2)=(-b+-sqrt(b^2-4ac))/(2a)&\n\n"+
+                    "&x^2+y_1+z_12^34&\n\n"+
+                    "&sin^-1(x)&\n\n"+
+                    "&d/dxf(x)=lim_(h->0)(f(x+h)-f(x))/h&\n\n"+
+                    "&f(x)=sum_(n=0)^oo(f^((n))(a))/(n!)(x-a)^n&\n\n"+
+                    "&((n),(k))[[a,b],[c,d]]&\n\n"+
+                    "&x/x={(1,if x!=0),(text{undefined},if x=0):}&\n\n"+
+                    "&a//b&\n\n"+
+                    "&(a/b)/(c/d)&\n\n"+
+                    "&a/b/c/d&\n\n"+
+                    "&((a*b))/c&\n\n"+
+                    "&sqrtsqrtroot3x&\n\n"+
+                    "&(:a,b:) and x lt y lt 1&\n\n"+
+                    "&(:a,b:) and {:(x,y),(u,v):}&\n\n"+
+                    "&abc-123.45^-1.1&\n\n"+
+                    "&hat(ab) bar(xy) ulA vec v dotx ddot y&\n\n"+
+                    "&bb \"abc\"&\n\n"+
+                    "&{(S_(11),...,S_(1n)),(vdots,ddots,vdots),(S_(m1),...,S_(mn))]&\n\n"+
+                    "&stackrel\"加热\"= or stackrel{Delta}{=}&\n\n"+
+                    "&{::}_(92)^(238)U&\n";
+                    break;
+                default:
+                    break;
+            }
+            transform();
         }
     </script>
 
