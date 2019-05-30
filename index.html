@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Wmark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="wmark.js"></script>
+</head>
+
+<body>
+    <style>
+        svg:not(:root){
+            overflow:visible
+        }
+
+        body {
+            min-height: 300px;
+            padding-top: 90px;
+            background: #f6f6f6;
+        }
+
+        .container {
+            width: 98%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto
+        }
+
+        #input{
+            min-height: 550px;
+            font-family: Menlo, Monaco, Consolas, "Andale Mono", "lucida console", "Courier New", monospace;
+        }
+
+        #output{
+            min-height: 550px
+        }
+    </style>
+    <nav class="navbar navbar-default navbar-fixed-top" style="background: #96b97d;">
+        <div class="container">
+            <h1>Wmark</h1>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <form class="form-inline">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <button type="button" class="btn btn-default">源文本</button>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    <button type="button" class="btn btn-success" onclick="transform()">
+                                        <span class="glyphicon glyphicon-send"></span> 点击转换</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-body">
+                        <textarea class="form-control" id="input" name="input"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <form class="form-inline"> <button type="button" class="btn btn-default">转换结果</button></form>
+                    </div>
+                    <div class="panel-body">
+                        <div id="output" name="output"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <script>
+        var wm = new wmark();
+        var input = document.getElementById('input');
+        var output = document.getElementById('output');
+
+        function transform(){
+            output.innerHTML = wm.convert(input.value);
+        }
+    </script>
+
+</body>
+
+</html>
